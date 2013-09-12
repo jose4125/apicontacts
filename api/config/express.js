@@ -1,4 +1,8 @@
+var subdomains = require('express-subdomains')
 var express = require('express');
+
+subdomains
+  .use('api')
 
 module.exports = function(app, config) {
   app.configure(function () {
@@ -11,6 +15,7 @@ module.exports = function(app, config) {
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use(subdomains.middleware);
     app.use(app.router);
     app.use(function(req, res) {
       res.status(404).render('404', { title: '404' });

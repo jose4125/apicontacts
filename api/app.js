@@ -3,6 +3,7 @@ var express = require('express'),
   fs = require('fs'),
   config = require('./config/config');
 
+
 mongoose.connect(config.db, function( error ){
 	if ( error ){
 		console.log( 'error al conectar con la base de datos', error );

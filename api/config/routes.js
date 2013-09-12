@@ -4,7 +4,7 @@ module.exports = function( app ){
 	var contacts = require( '../app/controllers/contacts' );
 	
 	//home route
-	app.get( '/api/', contacts.findAll );
+	app.get( '/api/contacts', contacts.findAll );
 
 	//find a contact route
 	app.get( '/api/contact/:id', contacts.findById );
