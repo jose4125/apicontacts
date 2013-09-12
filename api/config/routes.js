@@ -9,4 +9,13 @@ module.exports = function( app ){
 	//find a contact route
 	app.get( '/contact/:id', contacts.findById );
 
+	//add a contact route
+	app.post( '/add', contacts.addContact );
+
+	//update a contact route
+	app.put( '/contact/:id/edit', contacts.editContact );
+
+	//update a contact route
+	app.delete( '/contact/:id/delete', contacts.deleteContact );
+
 };
