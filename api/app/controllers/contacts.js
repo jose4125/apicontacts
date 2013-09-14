@@ -4,16 +4,22 @@ var mongoose = require( 'mongoose' ),
 exports.findAll = function( req, res ){
   Contact.find( function(error, contact){
     if( error ) throw new Error( errr );
+    res.header('Access-Control-Allow-Origin', '*');
+  	res.header('Access-Control-Allow-Credentials', true);
+  	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  	res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.send( contact );
   } );
 };
 
 exports.findById = function( req, res ){
-	Contact.findById( req.params.id, function(error, contact){
+    console.log( req.params );
+	Contact.findOne( req.params.id, function(error, contact){
 		if ( error ){
 			console.log( 'error al encontrar el contacto', error );
 			res.send( {status: 'not found'} );
 		}else{
+            if( contact == null ) res.send( {status: 'not found'} );
 			res.send( contact );
 		}
 	} )

@@ -12,23 +12,21 @@ require.config({
                 'jquery'
             ],
             exports: 'Backbone'
-        },
-        bootstrap: {
-            deps: ['jquery'],
-            exports: 'jquery'
         }
     },
     paths: {
         jquery: '../bower_components/jquery/jquery',
         backbone: '../bower_components/backbone/backbone',
-        underscore: '../bower_components/underscore/underscore',
-        bootstrap: 'vendor/bootstrap'
+        underscore: '../bower_components/underscore/underscore'
     }
 });
 
 require([
-    'backbone'
-], function (Backbone) {
+    'backbone',
+    'routes/main'
+], function (Backbone, Routes) {
+    console.log( 'init app' );
+    var routes = new Routes();
+
     Backbone.history.start();
-    console.log( 'backboen start' );
 });
