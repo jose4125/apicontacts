@@ -150,7 +150,8 @@ module.exports = function (grunt) {
         compass: {
             options: {
                 sassDir: '<%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
+                //cssDir: '.tmp/styles',
+                cssDir: '<%= yeoman.app %>/styles/css',
                 imagesDir: '<%= yeoman.app %>/images',
                 javascriptsDir: '<%= yeoman.app %>/scripts',
                 fontsDir: '<%= yeoman.app %>/styles/fonts',
@@ -266,7 +267,8 @@ module.exports = function (grunt) {
             },
             compile: {
                 files: {
-                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
+                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs'],
+                    '<%= yeoman.app %>/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
                 }
             }
         },

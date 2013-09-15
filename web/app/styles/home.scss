@@ -1,0 +1,41 @@
+@import 'variables';
+@import 'mixins';
+body{
+	background: $bodyBg;
+	border-top: 5px solid darken( $bodyBg, 10% );
+}
+.navbar-inverse{
+	background: darken( $bodyBg, 20% );
+	margin-bottom: 1em;
+
+	.navbar-brand{
+		color: #fff;
+	}
+	#searchContact{
+		margin-top: 0.5em;
+
+		.form-group{
+			margin: 0;
+
+			input{
+				background: darken($bodyBg, 10);
+				border: 0;
+				color: #fff;
+			}
+		}
+	}
+}
+#contContacts{
+	@include clearBoth();
+
+	article{
+	padding-bottom: 1em; 
+		& > div.col-md-12{
+			@include clearBoth();
+			background: rgba(255,255,255,0.5);
+			border-radius: 0.3em;
+			border-top: 1px solid rgba(255,255,255,0.5);
+			box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+		}
+	}
+}
