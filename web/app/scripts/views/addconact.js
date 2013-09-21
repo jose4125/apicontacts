@@ -13,18 +13,11 @@ define([
     	id: 'addContact',
 
     	events:{
-    		'click .close': 'removeModal',
             'click #btnAdd': 'addButton'
     	},
 
         template: JST['app/scripts/templates/addconact.ejs'],
 
-        removeModal: function(){
-        	this.$el.on('hidden.bs.modal', function() {
-              console.log('escondeindo');
-              this.remove();
-            })
-        },
 
         addButton: function( event ){
             console.log( 'add contact' );

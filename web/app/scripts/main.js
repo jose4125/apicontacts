@@ -36,5 +36,5 @@ require([
     console.log( 'init app' );
     var routes = new Routes();
 
-    Backbone.history.start();
+    Backbone.history.start( {pushState: true} );
 });
