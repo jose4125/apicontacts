@@ -17,7 +17,7 @@ define([
 
         addContactModal: function( event ){
         	event.preventDefault();
-        	var addModal = new AddContactView();
+        	var addModal = new AddContactView( {collection: this.collection} );
         	this.$el.append( addModal.render().el );
         }
     });

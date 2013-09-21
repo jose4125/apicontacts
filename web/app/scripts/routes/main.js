@@ -16,15 +16,15 @@ define([
 
         index: function(){
         	console.log( 'index route' );
-            var homeView = new HomeView(),
-                contacts = new ContactsCollection();
+            var contacts = new ContactsCollection();
 
-            homeView.render().el;
 
         	contacts.fetch().then(function(){
         		console.log( 'contacts', contacts );
                 var contactsView = new ContactsColView( {collection: contacts} );
+                var homeView = new HomeView( {collection: contacts} );
                 contactsView.render();
+                homeView.render().el;
         	});
         	
 

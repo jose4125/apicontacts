@@ -8,14 +8,15 @@ define([
 
     var ContactModel = Backbone.Model.extend({
         defaults: {
-        	first_name: '',
-          last_name: '',
-          cel: '',
-          phone_eme: '',
-          rkr_mail: '',
-          user_mail: '',
-          skype: '',
-          birthday: ''
+            first_name: '',
+            last_name: '',
+            identification: '',
+            cel: '',
+            phone_eme: '',
+            rkr_mail: '',
+            user_mail: '',
+            skype: '',
+            birthday: ''
         }
     });
 

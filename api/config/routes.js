@@ -10,12 +10,12 @@ module.exports = function( app ){
 	app.get( '/api/contact/:id', contacts.findById );
 
 	//add a contact route
-	app.post( '/api/add', contacts.addContact );
+	app.post( '/api/contacts', contacts.addContact );
 
 	//update a contact route
-	app.put( '/api/contact/:id/edit', contacts.editContact );
+	app.put( '/api/contact/:id', contacts.editContact );
 
 	//update a contact route
-	app.delete( '/api/contact/:id/delete', contacts.deleteContact );
+	app.delete( '/api/contact/:id', contacts.deleteContact );
 
 };

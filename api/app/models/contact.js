@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var Contact = new Schema({
   first_name: String,
   last_name: String,
+  identification: Number,
   cel: Number,
   phone_eme: Number,
   rkr_mail: String,
