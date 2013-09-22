@@ -26,17 +26,41 @@ exports.findById = function( req, res ){
 };
 
 exports.addContact = function( req, res ){
-	var contact = new Contact({
-		first_name: req.body.first_name,
-		last_name: req.body.last_name,
-		cel: req.body.cel,
-		phone_eme: req.body.phone_eme,
-		rkr_mail: req.body.rkr_mail,
-		user_mail: req.body.user_mail,
-		skype: req.body.skype,
-		birthday: req.body.birthday
-	})
 
+    res.header('Access-Control-Allow-Origin', '*');
+  	res.header('Access-Control-Allow-Credentials', true);
+  	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  	res.header('Access-Control-Allow-Headers', 'Content-Type');
+    /*res.header("Access-Control-Allow-Headers", "origin, x-requested-with, content-type");*/
+    console.log( 'add contacts' );
+    console.log( req.body );
+    console.log( typeof req.body.model === 'string' );
+    if ( typeof req.body.model === 'string' ){
+        console.log( 'string' );
+        var reqData = JSON.parse( req.body.model );
+        var contact = new Contact({
+            first_name: reqData.first_name,
+            last_name: reqData.last_name,
+            cel: reqData.cel,
+            phone_eme: reqData.phone_eme,
+            rkr_mail: reqData.rkr_mail,
+            user_mail: reqData.user_mail,
+            skype: reqData.skype,
+            birthday: reqData.birthday
+        })
+    
+    }else{
+        var contact = new Contact({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            cel: req.body.cel,
+            phone_eme: req.body.phone_eme,
+            rkr_mail: req.body.rkr_mail,
+            user_mail: req.body.user_mail,
+            skype: req.body.skype,
+            birthday: req.body.birthday
+        })
+    }
 	contact.save( function(error){
 		if ( error ){
 			console.log( 'cant add the contact', error );
