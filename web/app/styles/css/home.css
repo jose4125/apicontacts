@@ -33,12 +33,12 @@ body {
   position: relative;
 }
 /* line 31, ../home.scss */
-#contContacts #btnOptions {
+#contContacts .btnOptions {
   position: absolute;
   top: 2px;
   left: 0;
   border-radius: 0;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 /* line 39, ../home.scss */
 #contContacts:after {
@@ -49,38 +49,67 @@ body {
 /* line 43, ../home.scss */
 #contContacts article {
   padding-bottom: 1em;
+  margin-bottom: 20px;
 }
-/* line 45, ../home.scss */
+/* line 47, ../home.scss */
 #contContacts article > div.col-md-12 {
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  background: #292929;
+  overflow: hidden;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  height: 78px;
+}
+/* line 56, ../home.scss */
+#contContacts article .btn-edit, #contContacts article .btn-delete {
+  margin: 6px 9px;
+  display: block;
+  width: 31px;
+}
+/* line 61, ../home.scss */
+#contContacts article .contData {
   content: "";
   display: table;
   clear: both;
-  background: rgba(255, 255, 255, 0.5);
+  padding-left: 16px;
+  background: #98cbe5;
   border-radius: 0.3em;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+/* line 74, ../home.scss */
+#contContacts article .contDataFin {
+  left: 50px;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 
-/* line 55, ../home.scss */
+/* line 82, ../home.scss */
 .modal-content {
   background: rgba(51, 153, 204, 0.9);
   box-shadow: none;
 }
-/* line 59, ../home.scss */
+/* line 86, ../home.scss */
 .modal-content .modal-header {
   border-bottom: 0;
   background: rgba(31, 92, 122, 0.5);
   color: rgba(255, 255, 255, 0.7);
 }
-/* line 65, ../home.scss */
+/* line 92, ../home.scss */
 .modal-content .modal-footer {
   border-top: 0;
 }
-/* line 68, ../home.scss */
+/* line 95, ../home.scss */
 .modal-content .form-group {
   margin-bottom: 15px;
 }
-/* line 71, ../home.scss */
+/* line 98, ../home.scss */
 .modal-content .form-group input {
   background: rgba(255, 255, 255, 0.2);
   color: #143d52;
@@ -89,21 +118,21 @@ body {
   border: 0;
   box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.05);
 }
-/* line 79, ../home.scss */
+/* line 106, ../home.scss */
 .modal-content .form-group input::-webkit-input-placeholder {
   color: #1f5c7a;
 }
-/* line 83, ../home.scss */
+/* line 110, ../home.scss */
 .modal-content .form-group input:-moz-placeholder {
   /* Firefox 18- */
   color: #1f5c7a;
 }
-/* line 87, ../home.scss */
+/* line 114, ../home.scss */
 .modal-content .form-group input::-moz-placeholder {
   /* Firefox 19+ */
   color: #1f5c7a;
 }
-/* line 91, ../home.scss */
+/* line 118, ../home.scss */
 .modal-content .form-group input:-ms-input-placeholder {
   color: #1f5c7a;
 }

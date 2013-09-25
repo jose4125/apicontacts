@@ -12,6 +12,7 @@ define([
         el: '#contContacts',
         initialize: function (){
             console.log ( 'col: ', this.collection );
+            this.collection.on( 'add', this.addOne, this);
         },
         
         render: function (){
