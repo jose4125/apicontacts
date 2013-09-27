@@ -4,8 +4,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
-], function ($, _, Backbone, JST) {
+    'templates',
+    'views/editconact',
+    'views/deleteconact'
+], function ($, _, Backbone, JST, EditContactView, DeleteContactView) {
     'use strict';
 
     var ContactView = Backbone.View.extend({
@@ -21,7 +23,7 @@ define([
 
         initialize: function(){
             console.log( 'model: ', this.model );    
-            this.name = this.model.get( 'first_name' );      
+            this.id = this.model.get( '_id' );      
         },
 
         editContact: function(){
@@ -31,7 +33,17 @@ define([
 
         deleteContact: function(){
             console.log( 'delete contact' );      
-            console.log(this.name);      
+            console.log(this.id);
+            var thisId = this.id;
+            Backbone.history.navigate( thisId + '/delete' );
+            var deleteContcatView = new DeleteContactView();
+            $( 'body' ).append( deleteContcatView.render().el );
+            $( '#deleteContact' ).modal( 'show' );
+
+            $( '#deleteContact' ).on( 'hidden.bs.modal',function(){
+                this.remove();
+                Backbone.history.navigate( '/' );
+            } )
         },
 
         optionsShow: function( event ){

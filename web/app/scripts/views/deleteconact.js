@@ -11,7 +11,7 @@ define([
 
     var AddconactView = Backbone.View.extend({
     	className: 'modal fade',
-    	id: 'addContact',
+    	id: 'deleteContact',
 
     	events:{
             'click #btnAdd': 'addButton'
