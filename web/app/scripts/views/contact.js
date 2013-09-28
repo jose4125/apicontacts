@@ -53,6 +53,7 @@ define([
         },
 
         render: function(){
+            console.log('render contact')
             this.$el.html( this.template(this.model.toJSON()) );
 
             return this;

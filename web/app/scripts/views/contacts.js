@@ -11,11 +11,13 @@ define([
     var ContactsView = Backbone.View.extend({
         el: '#contContacts',
         initialize: function (){
-            console.log ( 'col: ', this.collection );
+            this.$el.empty();
             this.collection.on( 'add', this.addOne, this);
         },
         
         render: function (){
+            console.log( 'render contacts' );
+            console.log ( 'col: ', this.collection );
             _.each( this.collection.models, this.addOne, this );
 
             return this;

@@ -18,7 +18,7 @@ define([
         addContactModal: function( event ){
                              /*event.preventDefault();*/
             console.log('hola');
-            Backbone.history.navigate( 'add');
+            Backbone.history.navigate( 'add' );
             var addModal = new AddContactView( {collection: this.collection} );
             this.$el.append( addModal.render().el );
             $(' #addContact' ).modal( 'show' );
@@ -27,9 +27,13 @@ define([
         	$( '#addContact' ).on('hidden.bs.modal', function() {
               console.log('escondeindo');
               this.remove();
-              Backbone.history.navigate( '');
+              Backbone.history.navigate( '' );
             })
 
+        },
+
+        render: function(){
+            return this;
         }
     });
 
