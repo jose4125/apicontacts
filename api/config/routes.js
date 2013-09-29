@@ -7,15 +7,15 @@ module.exports = function( app ){
 	app.get( '/api/contacts', contacts.findAll );
 
 	//find a contact route
-	app.get( '/api/contact/:id', contacts.findById );
+	app.get( '/api/contacts/:id', contacts.findById );
 
 	//add a contact route
 	app.post( '/api/contacts', contacts.addContact );
 
 	//update a contact route
-	app.put( '/api/contact/:id', contacts.editContact );
+	app.put( '/api/contacts/:id', contacts.editContact );
 
 	//update a contact route
-	app.delete( '/api/contact/:id', contacts.deleteContact );
+	app.delete( '/api/contacts/:id', contacts.deleteContact );
 
 };

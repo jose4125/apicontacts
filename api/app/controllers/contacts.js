@@ -4,22 +4,27 @@ var mongoose = require( 'mongoose' ),
 exports.findAll = function( req, res ){
   Contact.find( function(error, contact){
     if( error ) throw new Error( errr );
-    res.header('Access-Control-Allow-Origin', '*');
-  	res.header('Access-Control-Allow-Credentials', true);
-  	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  	res.header('Access-Control-Allow-Headers', 'Content-Type');
+    /*res.header('Access-Control-Allow-Origin', '*');*/
+    /*res.header('Access-Control-Allow-Credentials', true);*/
+    /*res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');*/
+    /*res.header('Access-Control-Allow-Headers', 'Content-Type');*/
     res.send( contact );
   } );
 };
 
 exports.findById = function( req, res ){
     console.log( req.params );
-	Contact.findOne( req.params.id, function(error, contact){
+    /*res.header('Access-Control-Allow-Origin', '*');*/
+    /*res.header('Access-Control-Allow-Credentials', true);*/
+    /*res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');*/
+    /*res.header('Access-Control-Allow-Headers', 'Content-Type');*/
+	Contact.findById( req.params.id, function(error, contact){
 		if ( error ){
 			console.log( 'error al encontrar el contacto', error );
 			res.send( {status: 'not found'} );
 		}else{
             if( contact == null ) res.send( {status: 'not found'} );
+            console.log('contact', contact);
 			res.send( contact );
 		}
 	} )
@@ -27,11 +32,10 @@ exports.findById = function( req, res ){
 
 exports.addContact = function( req, res ){
 
-    res.header('Access-Control-Allow-Origin', '*');
-  	res.header('Access-Control-Allow-Credentials', true);
-  	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  	res.header('Access-Control-Allow-Headers', 'Content-Type');
-    /*res.header("Access-Control-Allow-Headers", "origin, x-requested-with, content-type");*/
+    /*res.header('Access-Control-Allow-Origin', '*');*/
+    /*res.header('Access-Control-Allow-Credentials', true);*/
+    /*res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');*/
+    /*res.header('Access-Control-Allow-Headers', 'Content-Type');*/
     console.log( 'add contacts' );
     console.log( req.body );
     console.log( typeof req.body.model === 'string' );

@@ -28,28 +28,39 @@ define([
             }
         },
 
+        removeModal: function(){
+                     
+            var addModal = $( '#addContact' );
+            var deleteModal = $( '#deleteContact' );
+            var modalOpen;
+
+            if ( addModal ){
+                modalOpen = addModal;
+            }else if( deleteModal ){
+                modalOpen = deleteModal;
+            
+            }
+            modalOpen.modal( 'hide' );
+            modalOpen.on( 'hidden.bs.modal', function(){
+                this.remove();
+            } );
+        },
+
         index: function(){
         	console.log( 'index route' );
 
-            var addModal = $( '#addContact' );
-            var addHtml = addModal.html();
             var self = this;
 
-            if ( addHtml ){
-                addModal.modal( 'hide' );
-                addModal.on( 'hidden.bs.modal', function(){
-                    this.remove();
-                } );
+            this.removeModal();
 
-            }
-            if ( !this.homeView ) {
-                this.homeView = new HomeView();
-            }
             var contacts = new ContactsCollection();
                 contacts.fetch().then(function(){
                     self.changePage(new ContactsColView({
                         collection: contacts
                     }), '');
+                    if ( !self.homeView ) {
+                        self.homeView = new HomeView({collection: contacts});
+                    }
                 
                 });
         },

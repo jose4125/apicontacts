@@ -36,7 +36,7 @@ define([
             console.log(this.id);
             var thisId = this.id;
             Backbone.history.navigate( thisId + '/delete' );
-            var deleteContcatView = new DeleteContactView();
+            var deleteContcatView = new DeleteContactView({model: this.model });
             $( 'body' ).append( deleteContcatView.render().el );
             $( '#deleteContact' ).modal( 'show' );
 
@@ -54,6 +54,7 @@ define([
 
         render: function(){
             console.log('render contact')
+            this.$el.attr( 'id', this.id);
             this.$el.html( this.template(this.model.toJSON()) );
 
             return this;

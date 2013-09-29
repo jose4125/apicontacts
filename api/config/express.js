@@ -1,5 +1,6 @@
 var subdomains = require('express-subdomains')
 var express = require('express');
+var cors = require('cors')
 
 subdomains
   .use('api')
@@ -16,6 +17,7 @@ module.exports = function(app, config) {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(subdomains.middleware);
+    app.use(cors());
     app.use(app.router);
     app.use(function(req, res) {
       res.status(404).render('404', { title: '404' });

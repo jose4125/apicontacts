@@ -13,69 +13,41 @@ define([
     	className: 'modal fade',
     	id: 'deleteContact',
 
+        template: JST['app/scripts/templates/deleteconact.ejs'],
+
+        initialize: function(){
+            var modelId = this.model.get( '_id' );
+            this.modelContact = new ContactModel( {id: modelId} );
+            this.modelContact.on( 'destroy', this.unrender, this);
+        },
+
     	events:{
-            'click #btnAdd': 'addButton'
+            'click #btnDelete': 'deleteButton'
     	},
 
-        template: JST['app/scripts/templates/addconact.ejs'],
+        deleteButton: function( event ){
+            var self = this;
+            this.modelContact.fetch().then(function(){
+            
+                console.log( 'delete contact', self.modelContact.toJSON() );
+                self.modelContact.destroy();
 
 
-        addButton: function( event ){
-            console.log( 'add contact' );
-            console.log( this.collection );
-            var element = this.$el.find( 'form' );
-            /*var contactModel = new ContactModel();*/
+            });
 
-            /*var newContact = {*/
-            /*first_name:  element.find( '#first_name' ).val(),*/
-            /*last_name:  element.find( '#last_name' ).val(),*/
-            /*identification:  element.find( '#identification' ).val(),*/
-            /*cel:  element.find( '#cel' ).val(),*/
-            /*phone_eme:  element.find( '#phone_eme' ).val(),*/
-            /*rkr_mail:  element.find( '#rkr_mail' ).val(),*/
-            /*user_mail:  element.find( '#user_mail' ).val(),*/
-            /*skype:  element.find( '#skype' ).val(),*/
-            /*birthday:  element.find( '#birthday' ).val()*/
-            /*}*/
+        },
 
-            Backbone.emulateJSON = true
-            Backbone.emulateHTTP = true;
-            self = this;
-            this.collection.create ({
-                first_name:  element.find( '#first_name' ).val(),
-                last_name:  element.find( '#last_name' ).val(),
-                identification:  element.find( '#identification' ).val(),
-                cel:  element.find( '#cel' ).val(),
-                phone_eme:  element.find( '#phone_eme' ).val(),
-                rkr_mail:  element.find( '#rkr_mail' ).val(),
-                user_mail:  element.find( '#user_mail' ).val(),
-                skype:  element.find( '#skype' ).val(),
-                birthday:  element.find( '#birthday' ).val()
-            }, { success: function(model, res){
-                console.log('success')
-                console.log('model', model)
-                console.log('res', res)
-                self.$el.modal( 'hide' );
-            },wait: true})
+        unrender: function(){
+            console.log( 'unrender contact', this.model );
+            var contactId = '#' + this.model.get( '_id' );
+            $( '#deleteContact' ).modal( 'hide' );
 
-            /*contactModel.save( newContact, {*/
-            /*success: function( model, res ){*/
-            /*console.log('success');*/
-            /*console.log(model);*/
-            /*console.log(response);*/
-            /*},*/
-            /*error: function(model, response) {*/
-            /*console.log(model);*/
-            /*},*/
-            /*wait: true*/
-            /*} );*/
-
-
+            $( contactId ).remove();        
         },
 
         render: function(){
         	
-        	this.$el.html( this.template() );
+        	this.$el.html( this.template(this.model.toJSON()) );
         	return this;
         }
     });
