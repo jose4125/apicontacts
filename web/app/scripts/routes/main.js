@@ -12,7 +12,8 @@ define([
     var MainRouter = Backbone.Router.extend({
         routes: {
         	'': 'index',
-        	'add': 'addContact'
+        	'add': 'addContact',
+        	':id/delete': 'deleteContact'
         },
         changePage: function( view, path ){
             console.log('path', path);
@@ -32,18 +33,24 @@ define([
                      
             var addModal = $( '#addContact' );
             var deleteModal = $( '#deleteContact' );
+            console.log( addModal );
+            console.log( deleteModal );
             var modalOpen;
 
-            if ( addModal ){
+            if ( addModal.html() ){
+                console.log('hide add modal')
                 modalOpen = addModal;
-            }else if( deleteModal ){
+            }else if( deleteModal.html() ){
+                console.log('hide del modal')
                 modalOpen = deleteModal;
             
             }
-            modalOpen.modal( 'hide' );
-            modalOpen.on( 'hidden.bs.modal', function(){
-                this.remove();
-            } );
+            if ( modalOpen != undefined ){
+                modalOpen.modal( 'hide' );
+                modalOpen.on( 'hidden.bs.modal', function(){
+                    this.remove();
+                } );
+            }
         },
 
         index: function(){
@@ -73,39 +80,20 @@ define([
                 this.homeView = new HomeView();
             }
             this.homeView.addContactModal();
-                var contacts = new ContactsCollection();
-                contacts.fetch().then(function(){
-                    self.changePage(new ContactsColView({
-                        collection: contacts
-                    }), '');
-                
-                });
+            var contacts = new ContactsCollection();
+            contacts.fetch().then(function(){
+                self.changePage(new ContactsColView({
+                    collection: contacts
+                }), '');
+            
+            });
+        },
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-                /*var self = this;*/
-
-                /*var contacts = new ContactsCollection();*/
-                /**//*this.homeFunc( 'index' );*/
-                /*contacts.fetch().then(function(){*/
-                /*self.changePage(new HomeView({*/
-                /*collection: contacts*/
-                /*}), 'add');*/
-
-                /*});*/
-
-
+        deleteContact: function( id ){
+            console.log( id );
+            var deleteId = '#' + id;
+            $( deleteId + ' .btnOptions').trigger('click');
+            $( deleteId + ' .btn-delete').trigger('click');
         }
 
     });

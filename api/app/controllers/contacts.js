@@ -25,6 +25,8 @@ exports.findById = function( req, res ){
 		}else{
             if( contact == null ) res.send( {status: 'not found'} );
             console.log('contact', contact);
+            console.log('contact type', typeof contact);
+            console.log('contact name', contact.first_name);
 			res.send( contact );
 		}
 	} )
