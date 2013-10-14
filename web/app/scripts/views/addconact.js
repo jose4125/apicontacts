@@ -38,8 +38,6 @@ define([
             /*birthday:  element.find( '#birthday' ).val()*/
             /*}*/
 
-            Backbone.emulateJSON = true
-            Backbone.emulateHTTP = true;
             self = this;
             this.collection.create ({
                 first_name:  element.find( '#first_name' ).val(),

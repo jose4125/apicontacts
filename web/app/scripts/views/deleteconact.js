@@ -18,7 +18,7 @@ define([
         initialize: function(){
             var modelId = this.model.get( '_id' );
             this.modelContact = new ContactModel( {id: modelId} );
-            this.modelContact.on( 'destroy', this.unrender, this);
+            this.listenTo(this.modelContact, 'destroy', this.unrender);
         },
 
     	events:{

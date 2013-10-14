@@ -12,7 +12,7 @@ define([
         el: '#contContacts',
         initialize: function (){
             this.$el.empty();
-            this.collection.on( 'add', this.addOne, this);
+            this.listenTo(this.collection, 'add', this.addOne);
         },
         
         render: function (){
