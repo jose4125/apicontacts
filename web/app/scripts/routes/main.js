@@ -3,10 +3,12 @@
 define([
     'jquery',
     'backbone',
+    'models/contact',
     'collections/contacts',
     'views/home',
-    'views/contacts'
-], function ( $, Backbone, ContactsCollection, HomeView, ContactsColView ) {
+    'views/contacts',
+    'views/contact'
+], function ( $, Backbone, ContactModel, ContactsCollection, HomeView, ContactsColView, ContactView ) {
     'use strict';
 
     var MainRouter = Backbone.Router.extend({
@@ -15,8 +17,8 @@ define([
         	'add': 'addContact',
         	':id/delete': 'deleteContact'
         },
-        changePage: function( view, path ){
-            console.log('path', path);
+        changePage: function( view ){
+                        /*console.log('path', path);*/
 
             if( this.currentView ){
                 console.log('if');
@@ -24,9 +26,10 @@ define([
             }
             this.currentView = view;
             this.currentView.render();
-            if( path === 'add' ){
-                this.currentView.addContactModal();
-            }
+            /*if( path === 'add' ){*/
+            /*console.log('entra id add')*/
+            /*this.currentView.addContactModal();*/
+            /*}*/
         },
 
         removeModal: function(){
@@ -64,7 +67,7 @@ define([
                 contacts.fetch().then(function(){
                     self.changePage(new ContactsColView({
                         collection: contacts
-                    }), '');
+                    }));
                     if ( !self.homeView ) {
                         self.homeView = new HomeView({collection: contacts});
                     }
@@ -84,7 +87,7 @@ define([
             contacts.fetch().then(function(){
                 self.changePage(new ContactsColView({
                     collection: contacts
-                }), '');
+                }));
             
             });
         },
@@ -92,8 +95,29 @@ define([
         deleteContact: function( id ){
             console.log( id );
             var deleteId = '#' + id;
+            var self = this;
             $( deleteId + ' .btnOptions').trigger('click');
             $( deleteId + ' .btn-delete').trigger('click');
+
+            var contactModel = new ContactModel({id: id});
+
+            contactModel.fetch({
+                success: function( model ){
+                    console.log('contactmodel', model);
+
+                    var deleteContactView = new ContactView({ model: model});
+                    deleteContactView.deleteContact();
+                         
+                }
+            });
+
+            var contacts = new ContactsCollection();
+            contacts.fetch().then(function(){
+                self.changePage(new ContactsColView({
+                    collection: contacts
+                }));
+                
+            });
         }
 
     });
