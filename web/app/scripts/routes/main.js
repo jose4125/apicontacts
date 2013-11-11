@@ -8,120 +8,121 @@ define([
     'views/home',
     'views/contacts',
     'views/contact'
-], function ( $, Backbone, ContactModel, ContactsCollection, HomeView, ContactsColView, ContactView ) {
-    'use strict';
+    ], function ( $, Backbone, ContactModel, ContactsCollection, HomeView, ContactsColView, ContactView ) {
+      'use strict';
 
-    var MainRouter = Backbone.Router.extend({
+      var MainRouter = Backbone.Router.extend({
         routes: {
-        	'': 'index',
-        	'add': 'addContact',
-        	':id/delete': 'deleteContact'
+          '': 'index',
+          'add': 'addContact',
+          ':id/delete': 'deleteContact'
         },
         changePage: function( view ){
-                        /*console.log('path', path);*/
+          /*console.log('path', path);*/
 
-            if( this.currentView ){
-                console.log('if');
-                this.currentView.undelegateEvents();
-            }
-            this.currentView = view;
-            this.currentView.render();
-            /*if( path === 'add' ){*/
-            /*console.log('entra id add')*/
-            /*this.currentView.addContactModal();*/
-            /*}*/
+          if( this.currentView ){
+            console.log('if');
+            this.currentView.undelegateEvents();
+          }
+          this.currentView = view;
+          this.currentView.render();
+          /*if( path === 'add' ){*/
+          /*console.log('entra id add')*/
+          /*this.currentView.addContactModal();*/
+          /*}*/
         },
 
         removeModal: function(){
-                     
-            var addModal = $( '#addContact' );
-            var deleteModal = $( '#deleteContact' );
-            console.log( addModal );
-            console.log( deleteModal );
-            var modalOpen;
 
-            if ( addModal.html() ){
-                console.log('hide add modal')
-                modalOpen = addModal;
-            }else if( deleteModal.html() ){
-                console.log('hide del modal')
-                modalOpen = deleteModal;
-            
-            }
-            if ( modalOpen != undefined ){
-                modalOpen.modal( 'hide' );
-                modalOpen.on( 'hidden.bs.modal', function(){
-                    this.remove();
-                } );
-            }
+          var addModal = $( '#addContact' );
+          var deleteModal = $( '#deleteContact' );
+          console.log( addModal );
+          console.log( deleteModal );
+          var modalOpen;
+
+          if ( addModal.html() ){
+            console.log('hide add modal')
+            modalOpen = addModal;
+          }else if( deleteModal.html() ){
+            console.log('hide del modal')
+            modalOpen = deleteModal;
+
+          }
+          if ( modalOpen != undefined ){
+            modalOpen.modal( 'hide' );
+            modalOpen.on( 'hidden.bs.modal', function(){
+              this.remove();
+            } );
+          }
         },
 
-        index: function(){
-        	console.log( 'index route' );
+          index: function(){
+             console.log( 'index route' );
 
-            var self = this;
+             var self = this;
 
-            this.removeModal();
+             this.removeModal();
 
-            var contacts = new ContactsCollection();
-                contacts.fetch().then(function(){
-                    self.changePage(new ContactsColView({
-                        collection: contacts
-                    }));
-                    if ( !self.homeView ) {
-                        self.homeView = new HomeView({collection: contacts});
-                    }
-                
-                });
-        },
+             var contacts = new ContactsCollection();
+             contacts.fetch().then(function(){
+               self.changePage(new ContactsColView({
+                 collection: contacts
+               }));
+               if ( !self.homeView ) {
+                 self.homeView = new HomeView({collection: contacts});
+               }
 
-        addContact: function(){
+             });
+           },
+
+          addContact: function(){
             console.log( 'add contact router' );            
-            
+
             var self = this; 
             if ( !this.homeView ) {
-                this.homeView = new HomeView();
+              this.homeView = new HomeView();
             }
             this.homeView.addContactModal();
             var contacts = new ContactsCollection();
             contacts.fetch().then(function(){
-                self.changePage(new ContactsColView({
-                    collection: contacts
-                }));
-            
-            });
-        },
+              self.changePage(new ContactsColView({
+                collection: contacts
+              }));
 
-        deleteContact: function( id ){
+            });
+          },
+
+          deleteContact: function( id ){
             console.log( id );
-            var deleteId = '#' + id;
             var self = this;
-            $( deleteId + ' .btnOptions').trigger('click');
-            $( deleteId + ' .btn-delete').trigger('click');
 
             var contactModel = new ContactModel({id: id});
 
             contactModel.fetch({
-                success: function( model ){
-                    console.log('contactmodel', model);
+             success: function( model ){
+                        console.log('contactmodel', model);
 
-                    var deleteContactView = new ContactView({ model: model});
-                    deleteContactView.deleteContact();
-                         
-                }
+                        var deleteContactView = new ContactView({ model: model});
+                        deleteContactView.deleteContact();
+
+                      }
             });
 
             var contacts = new ContactsCollection();
             contacts.fetch().then(function(){
-                self.changePage(new ContactsColView({
-                    collection: contacts
-                }));
-                
+              self.changePage(new ContactsColView({
+                collection: contacts,
+                modelId: id
+              }));
+              if ( !self.homeView ) {
+                self.homeView = new HomeView({collection: contacts});
+              }
+
             });
-        }
+         }
 
+      });
+
+
+      return MainRouter;
     });
-
-    
-    return MainRouter;
-});

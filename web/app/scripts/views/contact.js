@@ -6,8 +6,9 @@ define([
     'backbone',
     'templates',
     'views/editconact',
-    'views/deleteconact'
-], function ($, _, Backbone, JST, EditContactView, DeleteContactView) {
+    'views/deleteconact',
+    'views/addconact'
+], function ($, _, Backbone, JST, EditContactView, DeleteContactView, AddContactView ) {
     'use strict';
 
     var ContactView = Backbone.View.extend({
@@ -27,8 +28,19 @@ define([
         },
 
         editContact: function(){
-            console.log( 'edit contact' );      
-            console.log(this.name);      
+            console.log( 'edit contact' ); 
+            var editModal = new AddContactView( { model: this.model } )
+            $( 'body' ).append( editModal.render().el);
+            Backbone.history.navigate( this.id + '/edit' );
+
+            $(' #addContact' ).modal( 'show' );
+
+
+        	$( '#addContact' ).on('hidden.bs.modal', function() {
+              console.log('escondeindo');
+              this.remove();
+              Backbone.history.navigate( '' );
+            })
         },
 
         deleteContact: function(){

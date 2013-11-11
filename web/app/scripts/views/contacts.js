@@ -20,6 +20,9 @@ define([
             console.log ( 'col: ', this.collection );
             _.each( this.collection.models, this.addOne, this );
 
+            var deleteId = '#' + this.options.modelId;
+            $( deleteId + ' .btnOptions').trigger('click');
+
             return this;
         },
 

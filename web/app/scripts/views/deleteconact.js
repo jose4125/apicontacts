@@ -9,7 +9,7 @@ define([
 ], function ($, _, Backbone, JST, ContactModel) {
     'use strict';
 
-    var AddconactView = Backbone.View.extend({
+    var DeleteContactView = Backbone.View.extend({
     	className: 'modal fade',
     	id: 'deleteContact',
 
@@ -52,5 +52,5 @@ define([
         }
     });
 
-    return AddconactView;
+    return DeleteContactView;
 });
