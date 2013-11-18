@@ -49,7 +49,8 @@ exports.addContact = function( req, res ){
 
 
 exports.editContact = function( req, res ){
-	Contact.findById( req.params.id, req, function(error, contact){
+	Contact.editContact( req.params.id, req, function(error, contact){
+        console.log('contact res ', contact );
         res.send( contact );
 	} )
 }

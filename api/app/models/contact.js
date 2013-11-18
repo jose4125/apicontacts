@@ -107,7 +107,7 @@ exports.editContact = function( id, req, callback ){
 				callback( {status: 'cant update'})
 			}else{
 				console.log( 'updated' );
-				callback( contact );
+				callback( null, contact );
 			}
 		} )
 	} )
