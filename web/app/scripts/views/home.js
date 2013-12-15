@@ -14,7 +14,7 @@ define([
         el: 'body',
         
         initialize: function(){
-            this.listenTo( Vent, 'contact:edit', this.editContact );
+          this.listenTo( Vent, 'contact:edit', this.editContact );
         },
 
         events: {
@@ -23,9 +23,9 @@ define([
 
         editContact: function( model ){
             console.log('vent edit');             
-            console.log( 'edit contact' ); 
+            console.log( 'edit contact', model ); 
             this.id = model.get( '_id' );      
-            var editModal = new EditContactView( { modelId: this.id } )
+            var editModal = new EditContactView( {model: model,  modelId: this.id } )
             $( 'body' ).append( editModal.render().el);
             Backbone.history.navigate( this.id + '/edit' );
 

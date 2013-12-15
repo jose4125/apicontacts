@@ -20,16 +20,12 @@ define([
         template: JST['app/scripts/templates/editconact.ejs'],
 
 
-        updateContact: function(){
-            console.log( 'change model' );
-        },
-
         updateButton: function( event ){
             console.log( 'add contact' );
             var element = this.$el.find( 'form' );
             /*var contactModel = new ContactModel();*/
 
-            this.userUpdate.set( {
+            this.model.set( {
               first_name:  element.find( '#first_name' ).val(),
               last_name:  element.find( '#last_name' ).val(),
               identification:  element.find( '#identification' ).val(),
@@ -43,7 +39,7 @@ define([
 
             self = this;
 
-            this.userUpdate.save( {}, {
+            this.model.save( {}, {
                 success: function( model ){
                     console.log('success');
                     console.log(model);
@@ -59,17 +55,8 @@ define([
 
         render: function(){
         	var self= this;
-          this.userUpdate = new ContactModel({ id: this.options.modelId});
+          this.$el.html( this.template( this.model.toJSON() ) );
 
-          this.userUpdate.fetch({
-            success: function( model, res){
-              console.log('model', model);
-              console.log('res', res );
-              console.log('model update', model.toJSON() );
-              self.$el.html( self.template( model.toJSON() ) );
-                     
-            }
-          });
         	return this;
         }
     });

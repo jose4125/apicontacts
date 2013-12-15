@@ -5,6 +5,7 @@ define([
     'backbone'
 ], function (_, Backbone) {
     'use strict';
+    Backbone.Model.prototype.idAttribute = '_id';
 
     var ContactModel = Backbone.Model.extend({
 
