@@ -23,8 +23,9 @@ define([
         },
 
         initialize: function(){
-            console.log( 'model: ', this.model );    
-            this.id = this.model.get( '_id' );      
+          console.log( 'model: ', this.model );    
+          this.id = this.model.get( '_id' );      
+          this.listenTo( this.model, 'change', this.render );
         },
 
         editContact: function(){

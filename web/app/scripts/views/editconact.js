@@ -19,10 +19,6 @@ define([
 
         template: JST['app/scripts/templates/editconact.ejs'],
 
-      initialize: function(){
-      
-          /*this.listenTo( this.userUpdate, 'change', this.updateContact );*/
-      },
 
         updateContact: function(){
             console.log( 'change model' );

@@ -41,6 +41,10 @@ require([
     'routes/main'
 ], function (Backbone, bootstrap, Routes) {
     console.log( 'init app' );
+    var now = new Date().getTime();
+    var page_load_time = now - performance.timing.navigationStart;
+    console.log("User-perceived page loading time: " + page_load_time);
+
     var routes = new Routes();
 
     Backbone.history.start( {pushState: true} );
