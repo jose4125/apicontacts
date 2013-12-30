@@ -2,10 +2,9 @@
   "name": "package",
   "version": "0.0.0",
   "dependencies": {
-    "bootstrap": "~3.0.3",
     "jquery": "~2.0.3",
     "lodash": "~2.4.0",
-    "backbone": "~1.1.0"
+    "backbone": "~1.1.0",
+    "sass-bootstrap": "~3.0.2"
   }
 }
-

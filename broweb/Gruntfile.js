@@ -31,13 +31,13 @@ module.exports = function(grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
-      less: {
-        files: ['<%= yeoman.app %>/less/{,*/}*.less'],
-        tasks: ['less:server', 'autoprefixer']
-      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        tasks: ['autoprefixer']
+      },
+      compass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['sass']
       },
       browserify: {
         files: ['<%= yeoman.app %>/scripts/**/*.js', 'test/{,*/}*.js'],
@@ -125,32 +125,19 @@ module.exports = function(grunt) {
         }
       }
     },
-    less: {
+    sass:{
       options: {
-        compile: true,
-        banner: '<%= banner %>'
+        style: 'expanded',
+        compass: true,
       },
-      dev: {
-        src: ['<%= yeoman.app %>/less/app.less'],
-        dest: '.tmp/styles/app.css'
-      },
-      bootstrap: {
-        src: ['<%= yeoman.vendor %>/bootstrap/less/bootstrap.less'],
-        dest: '<%= yeoman.dist %>/styles/bootstrap.css'
-      },
-      'bootstrap-min': {
+      dist:{},
+      server: {
         options: {
-          compress: true
+          debugInfo: true
         },
-        src: ['<%= yeoman.vendor %>/bootstrap/less/bootstrap.less'],
-        dest: '<%= yeoman.dist %>/styles/bootstrap.min.css'
-      },
-      min: {
-        options: {
-          compress: true
-        },
-        src: ['<%= yeoman.app %>/less/app.less'],
-        dest: '<%= yeoman.dist %>/styles/app.min.css'
+        files: {
+          '<%= yeoman.app %>/styles/css/main.css': '<%= yeoman.app %>/styles/main.scss'
+        }
       }
     },
     browserify: {
@@ -345,37 +332,25 @@ module.exports = function(grunt) {
             '.htaccess',
             'images/{,*/}*.webp',
             'styles/fonts/{,*/}*.*'  ,
-            'bower_components/sass-bootstrap/fonts/*.*' 
+            'bower_components/sass-bootstrap/fonts/*.*'
           ]
         }]
-      },
-      styles: {
-        expand: true,
-        dot: true,
-        cwd: '<%= yeoman.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
       }
     },
     
     concurrent: {
       server: [
-        'less:dev',
         'browserify:dev',
         'browserify:vendor',
-        'copy:styles'
       ],
       test: [
-        'copy:styles',
         'jshint',
         'browserify:vendor',
         'browserify:dev',
         'browserify:test'
       ],
       dist: [
-        'less:dist',
         'browserify',
-        'copy:styles',
         'imagemin',
         'svgmin',
         'htmlmin'
@@ -391,6 +366,7 @@ module.exports = function(grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'sass:server',
       'concat:dev',
       'autoprefixer',
       'connect:livereload',
@@ -406,6 +382,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'compass',
     'autoprefixer',
     'connect:test',
     'mocha',
