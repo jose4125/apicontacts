@@ -1,46 +1,46 @@
 @import 'variables';
 @import 'mixins';
 body{
-	background: $bodyBg;
-	border-top: 5px solid darken( $bodyBg, 10% );
+  background: $bodyBg;
+  border-top: 5px solid darken( $bodyBg, 10% );
 }
 .navbar-inverse{
-	background: darken( $bodyBg, 20% );
-	margin-bottom: 1em;
+  background: darken( $bodyBg, 20% );
+  margin-bottom: 1em;
 
-	.navbar-brand{
-		color: #fff;
-	}
-	#searchContact{
-		margin-top: 0.5em;
+  .navbar-brand{
+    color: #fff;
+  }
+  #searchContact{
+    margin-top: 0.5em;
 
-		.form-group{
-			margin: 0;
+    .form-group{
+      margin: 0;
 
-			input{
-				background: darken($bodyBg, 10);
-				border: 0;
-				color: #fff;
-			}
-		}
-	}
+      input{
+        background: darken($bodyBg, 10);
+        border: 0;
+        color: #fff;
+      }
+    }
+  }
 }
 #contContacts{
-	position: relative;
+  position: relative;
 
-	.btnOptions{
-		position: absolute;
-		top: 2px;
-		left: 0;
-		border-radius: 0;
-		box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
-	}
+  .btnOptions{
+    position: absolute;
+    top: 2px;
+    left: 0;
+    border-radius: 0;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
+  }
 
-	&:after{
-		@include clearBoth();
-	}
+  &:after{
+    @include clearBoth();
+  }
 
-	article{
+  article{
         padding-bottom: 1em; 
         margin-bottom: 20px;
 
@@ -50,7 +50,7 @@ body{
             position: relative;
             background: #292929;
             overflow: hidden;
-			box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+      box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
             height: 78px;
         }
         .btn-edit, .btn-delete{
@@ -58,66 +58,66 @@ body{
             display: block;
             width: 31px;
         }
-	    .contData{
-			@include clearBoth();
+      .contData{
+      @include clearBoth();
             padding-left: 16px;
-			background: #98cbe5;
-			border-radius: 0.3em;
-			border-top: 1px solid rgba(255,255,255,0.5);
+      background: #98cbe5;
+      border-radius: 0.3em;
+      border-top: 1px solid rgba(255,255,255,0.5);
             -webkit-transition: all 0.2s linear;
             transition: all 0.2s linear;
             position: absolute;
             top: 0;
             left: 0;
             z-index: 2;
-		}
+    }
         .contDataFin{
             left: 50px;
             -webkit-transition: all 0.2s linear;
             transition: all 0.2s linear;
         }
-	}
+  }
 }
 
 .modal-content{
-	background: rgba(51,153,204,0.9);
-	box-shadow: none;
+  background: rgba(51,153,204,0.9);
+  box-shadow: none;
 
-	.modal-header{
-		border-bottom: 0;
-		background: darken(rgba(51,153,204,0.5), 20%);
-		color: rgba(255,255,255,0.7);
-	}
+  .modal-header{
+    border-bottom: 0;
+    background: darken(rgba(51,153,204,0.5), 20%);
+    color: rgba(255,255,255,0.7);
+  }
 
-	.modal-footer{
-		border-top: 0;
-	}
-	.form-group{
-		margin-bottom: 15px;
+  .modal-footer{
+    border-top: 0;
+  }
+  .form-group{
+    margin-bottom: 15px;
 
-		input{
-			background: rgba(255,255,255,0.2);
-			color: darken(rgb(51,153,204), 30%);
-			text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
-			font-size: 1.2em;
-			border: 0;
-			box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.05);
+    input{
+      background: rgba(255,255,255,0.2);
+      color: darken(rgb(51,153,204), 30%);
+      text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+      font-size: 1.2em;
+      border: 0;
+      box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.05);
 
-			&::-webkit-input-placeholder {
-			   color: darken(rgb(51,153,204), 20%);
-			}
+      &::-webkit-input-placeholder {
+         color: darken(rgb(51,153,204), 20%);
+      }
 
-			&:-moz-placeholder { /* Firefox 18- */
-			   color: darken(rgb(51,153,204), 20%);  
-			}
+      &:-moz-placeholder { /* Firefox 18- */
+         color: darken(rgb(51,153,204), 20%);  
+      }
 
-			&::-moz-placeholder {  /* Firefox 19+ */
-			   color: darken(rgb(51,153,204), 20%);  
-			}
+      &::-moz-placeholder {  /* Firefox 19+ */
+         color: darken(rgb(51,153,204), 20%);  
+      }
 
-			&:-ms-input-placeholder {  
-			   color: darken(rgb(51,153,204), 20%);  
-			}
-		}
-	}
+      &:-ms-input-placeholder {  
+         color: darken(rgb(51,153,204), 20%);  
+      }
+    }
+  }
 }
