@@ -172,7 +172,9 @@ module.exports = function(grunt) {
             '<%= yeoman.vendor %>/jquery/jquery.js:jquery',
             '<%= yeoman.vendor %>/underscore/underscore.js:underscore',
             '<%= yeoman.vendor %>/backbone/backbone.js:backbone',
-            '<%= yeoman.app %>/scripts/routes/main.js:routes'
+            '<%= yeoman.app %>/scripts/routes/main.js:routes',
+            '<%= yeoman.app %>/scripts/models/contact.js:contactModel',
+            '<%= yeoman.app %>/scripts/collections/contacts.js:contactsCollection'
           ],
           transform: ['debowerify']
         }

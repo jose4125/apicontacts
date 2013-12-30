@@ -12,7 +12,7 @@ var Routes = require('routes');
 
 /*var app = new App();*/
 var routes = new Routes;
-Backbone.history.start();
+Backbone.history.start({ pushState: true });
 
 
 
