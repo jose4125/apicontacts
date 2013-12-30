@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       },
       browserify: {
         files: ['<%= yeoman.app %>/scripts/**/*.js', 'test/{,*/}*.js'],
-        tasks: ['browserify:dev', 'concat:dev']
+        tasks: ['browserify:dev', 'browserify:vendor', 'concat:dev']
       },
       mocha: {
         files: ['test/{,*/}*.js'],
@@ -174,7 +174,9 @@ module.exports = function(grunt) {
             '<%= yeoman.vendor %>/backbone/backbone.js:backbone',
             '<%= yeoman.app %>/scripts/routes/main.js:routes',
             '<%= yeoman.app %>/scripts/models/contact.js:contactModel',
-            '<%= yeoman.app %>/scripts/collections/contacts.js:contactsCollection'
+            '<%= yeoman.app %>/scripts/collections/contacts.js:contactsCollection',
+            '<%= yeoman.app %>/scripts/views/contactsCollectionView.js:contactsCollectionView',
+            '<%= yeoman.app %>/scripts/views/contactSingleView.js:contactSingleView'
           ],
           transform: ['debowerify']
         }
