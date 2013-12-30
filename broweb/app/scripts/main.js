@@ -7,8 +7,13 @@
 
 'use strict';
 
-var App = require('./app.js');
+/*var App = require('./app.js');*/
+var Routes = require('routes');
 
-var app = new App();
+/*var app = new App();*/
+var routes = new Routes;
+Backbone.history.start();
 
-app.beep();
+
+
+/*app.beep();*/

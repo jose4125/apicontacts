@@ -53,7 +53,7 @@ module.exports = function(grunt) {
         },
         files: [
           '<%= yeoman.app %>/**/*.html',
-          '.tmp/styles/{,*/}*.css',
+          '<%= yeoman.app %>/styles/css/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
         ]
@@ -144,10 +144,10 @@ module.exports = function(grunt) {
       vendor: {
         src: [
           '<%= yeoman.vendor %>/jquery/jquery.js',
-          '<%= yeoman.vendor %>/lodash/dist/lodash.js',
-          '<%= yeoman.vendor %>/backbone/backbone.js'
+          '<%= yeoman.vendor %>/underscore/underscore.js',
+          '<%= yeoman.vendor %>/backbone/backbone.js',
         ],
-        dest: '.tmp/scripts/vendor.js',
+        dest: '<%= yeoman.app %>/scripts/vendor.js',
         options: {
           debug: true,
           shim: {
@@ -155,8 +155,8 @@ module.exports = function(grunt) {
               path: '<%= yeoman.vendor %>/jquery/jquery.js',
               exports: '$'
             },
-            lodash: {
-              path: '<%= yeoman.vendor %>/lodash/dist/lodash.js',
+            underscore: {
+              path: '<%= yeoman.vendor %>/underscore/underscore.js',
               exports: '_'
             },
             backbone: {
@@ -164,36 +164,38 @@ module.exports = function(grunt) {
               exports: 'Backbone',
               depends: {
                 jquery: '$',
-                lodash: '_'
+                underscore: '_'
               }
             }
           },
           alias: [
-            '<%= yeoman.vendor %>/lodash/dist/lodash.js:underscore',
-            '<%= yeoman.vendor %>/backbone/backbone.js:backbone'
+            '<%= yeoman.vendor %>/jquery/jquery.js:jquery',
+            '<%= yeoman.vendor %>/underscore/underscore.js:underscore',
+            '<%= yeoman.vendor %>/backbone/backbone.js:backbone',
+            '<%= yeoman.app %>/scripts/routes/main.js:routes'
           ],
           transform: ['debowerify']
         }
       },
       dev: {
-        src: ['<%= yeoman.app %>/scripts/main.js'],
-        dest: '.tmp/scripts/main.js',
+             /*src: ['<%= yeoman.app %>/scripts/main.js'],*/
+             /*dest: '.tmp/scripts/main.js',*/
         options: {
           debug: true,
-          external: ['jquery', 'lodash', 'backbone']
+          external: ['jquery', 'underscore', 'backbone']
         }
       },
       test: {
-        src: ['test/{,*/}*.js'],
-        dest: '.tmp/test/test.js',
+        //src: ['test/{,*/}*.js'],
+        //dest: '.tmp/test/test.js',
         options: {
           debug: true,
-          external: ['jquery', 'lodash', 'backbone']
+          external: ['jquery', 'underscore', 'backbone']
           // ignore: ['test/lib/*.js', 'test/spec/*.js']
         }
       }
     },
-    
+
     autoprefixer: {
       options: {
         browsers: ['last 1 version']
@@ -337,7 +339,7 @@ module.exports = function(grunt) {
         }]
       }
     },
-    
+
     concurrent: {
       server: [
         'browserify:dev',
