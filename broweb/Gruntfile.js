@@ -39,6 +39,10 @@ module.exports = function(grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['sass']
       },
+      'template-module': {
+        files: ['<%= yeoman.app %>/scripts/templates/*.ejs'],
+        tasks: ['template-module']
+      },
       browserify: {
         files: ['<%= yeoman.app %>/scripts/**/*.js', 'test/{,*/}*.js'],
         tasks: ['browserify:dev', 'browserify:vendor', 'concat:dev']
@@ -140,6 +144,17 @@ module.exports = function(grunt) {
         }
       }
     },
+    'template-module': {
+      compile: {
+        options: {
+          module: true,
+          provider: 'underscore'
+        },
+        files: {
+          'app/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
+        }
+      }
+    },
     browserify: {
       vendor: {
         src: [
@@ -176,7 +191,8 @@ module.exports = function(grunt) {
             '<%= yeoman.app %>/scripts/models/contact.js:contactModel',
             '<%= yeoman.app %>/scripts/collections/contacts.js:contactsCollection',
             '<%= yeoman.app %>/scripts/views/contactsCollectionView.js:contactsCollectionView',
-            '<%= yeoman.app %>/scripts/views/contactSingleView.js:contactSingleView'
+            '<%= yeoman.app %>/scripts/views/contactSingleView.js:contactSingleView',
+            '<%= yeoman.app %>/scripts/templates.js:templates',
           ],
           transform: ['debowerify']
         }
@@ -371,6 +387,7 @@ module.exports = function(grunt) {
 
     grunt.task.run([
       'clean:server',
+      'template-module',
       'concurrent:server',
       'sass:server',
       'concat:dev',
@@ -387,6 +404,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'template-module',
     'concurrent:test',
     'compass',
     'autoprefixer',
@@ -398,7 +416,9 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'useminPrepare',
+    'template-module',
     'concurrent:dist',
+    'sass:server',
     'autoprefixer',
     'concat',
     'cssmin',
