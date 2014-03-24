@@ -27,9 +27,9 @@ angular.module('apicontactsApp')
     // Service logic
     // ...
 
-    var cont; 
+    var cont;
     function allContacts (){
-      cont = $resource( ENV.localhost + '/contacts' )
+      cont = $resource( ENV.localhost + '/contacts' );
     }
 
     // Public API here

@@ -35,7 +35,7 @@
     </div>
  -->    <div class="row">
         <div class="container" ng-controller="MainCtrl">
-            <section id="contContacts" ui-view=""></section>
+            <section id="contContacts" ui-view="contactList"></section>
         </div>
     </div>
 
@@ -79,7 +79,9 @@
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/services/contacts.js"></script>
     <script src="scripts/controllers/AddContact.js"></script>
+    <script src="scripts/directives/addcontact.js"></script>
     <!-- endbuild -->
+    <div ui-view="modal"></div>
 </body>
 
 </html>

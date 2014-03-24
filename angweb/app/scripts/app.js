@@ -9,20 +9,32 @@ angular.module('apicontactsApp', [
   'ngSanitize',
   'ui.router'
 ])
-  .config(function ( $urlRouterProvider, $stateProvider, $locationProvider ){
+  .config(function ( $urlRouterProvider, $stateProvider ){
     console.log( '[init app]' );
     $stateProvider
       .state( 'home', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        url: '',
+        views: {
+          'contactList': {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+          }
+        }
       } )
-      .state( 'addContact', {
-        url: '/addContact',
-        templateUrl: 'views/main.html',
-        controller: 'AddContactCtrl'
-      } )
+      .state( 'add', {
+        url: '/add',
+        views: {
+          'contactList': {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+          },
+          'modal': {
+            // templateUrl: 'views/add.html',
+            templateUrl: 'views/add.html',
+            controller: 'AddContactCtrl'
+          }
+        }
+      } );
 
     $urlRouterProvider.otherwise( '/' );
-
-  })
+  });
