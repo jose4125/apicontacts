@@ -10,8 +10,8 @@
     "jade": "~0.34.0",
     "mongoose": "~3.6.14",
     "nodemon": "*",
-    "express-subdomains": "*",
-    "cors": "*"
+    "express-subdomains": "0.0.4",
+    "cors": "2.1.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
