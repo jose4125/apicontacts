@@ -23,13 +23,23 @@ angular.module('apicontactsApp')
   //   };
   // });
 
-  .factory('Contacts', function ( $resource ) {
+  .factory('Contacts', function ( $resource, $state ) {
     // Service logic
     // ...
 
     var cont;
+    var newCont;
     function allContacts (){
       cont = $resource( ENV.localhost + '/contacts' );
+    }
+    function save ( contact, callback ){
+
+      newCont = new cont( contact );
+      console.log( '[save contact]', newCont );
+      console.log( '[save contact]', contact );
+      newCont.$save( function(){
+        callback({status : true});
+      });
     }
 
     // Public API here
@@ -37,6 +47,10 @@ angular.module('apicontactsApp')
       all: function () {
         allContacts();
         return cont.query();
+      },
+      create: function( contact, callback ){
+        save( contact, callback );
+        return newCont;
       }
     };
   });

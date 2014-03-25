@@ -1,9 +1,20 @@
 'use strict';
 
 angular.module('apicontactsApp')
-  .controller('AddContactCtrl', function ($scope, $location, $state, Contacts) {
+  .controller('AddContactCtrl', function ($scope, $location, $state, $timeout, Contacts) {
     console.log( '[add controller]');
-    $scope.redirect = function(){
+    $scope.save = function (){
+      console.log( '[contact to add]', $scope.contact);
+      Contacts.create( $scope.contact, function( res ){
+        console.log('res', res);
+        if( res ){
+          // $scope.redirect();
+          // $( '#myModal').modal( 'hide' );
+          $scope.$emit('save-contact');
+        }
+      } );
+    }
+    $scope.redirect = function (){
       console.log('[redirect]');
       $location.path( '/' ).replace();
       // $state.transitionTo("home");
