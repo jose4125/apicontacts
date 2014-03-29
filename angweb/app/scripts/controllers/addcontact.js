@@ -8,8 +8,6 @@ angular.module('apicontactsApp')
       Contacts.create( $scope.contact, function( res ){
         console.log('res', res);
         if( res ){
-          // $scope.redirect();
-          // $( '#myModal').modal( 'hide' );
           $scope.$emit('save-contact');
         }
       } );

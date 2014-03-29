@@ -1,13 +1,13 @@
 <article class="col-md-4"  id="{{contact._id}}" ng-repeat="contact in contacts | filter:search">
     <div class="col-md-12">
         <a class="btn-edit btn btn-success btn-sm">
-            <span class="glyphicon glyphicon-align-justify"></span>
+            <span class="glyphicon glyphicon-edit"></span>
         </a>
         <a class="btn-delete btn btn-danger btn-sm">
-            <span class="glyphicon glyphicon-align-justify"></span>
+            <span class="glyphicon glyphicon-trash"></span>
         </a>
         <div class="contData">
-            <button class="btnOptions btn btn-info btn-xs">
+            <button class="btnOptions btn btn-info btn-xs" sh-options ng-click="shOptions()">
                 <span class="glyphicon glyphicon-align-justify"></span>
             </button>
             <div class="col-md-6">
