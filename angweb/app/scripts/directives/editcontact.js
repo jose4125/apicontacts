@@ -9,7 +9,7 @@ angular.module('apicontactsApp')
         console.log( 'edit directive' );
         var modal = element.find( '#myModal' );
         modal.modal( 'show' );
-        scope.$on("save-contact", function(event){
+        scope.$on("update-contact", function(event){
           console.log( 'fire on');
           $( '#myModal').modal( 'hide' );
          });

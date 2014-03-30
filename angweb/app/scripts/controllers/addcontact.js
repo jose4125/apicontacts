@@ -15,7 +15,7 @@ angular.module('apicontactsApp')
     $scope.redirect = function (){
       console.log('[redirect]');
       $location.path( '/' ).replace();
-      // $state.transitionTo("home");
+      // $state.transitionTo("home", {}, {location: 'replace', inherit: true, relative: $state.$current, notify: true});
       $state.go("home");
     }
   });

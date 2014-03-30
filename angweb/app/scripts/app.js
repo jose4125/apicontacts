@@ -17,7 +17,16 @@ angular.module('apicontactsApp', [
         views: {
           'contactList': {
             templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
+            controller: 'MainCtrl',
+            resolve: {
+              all: function ( Contacts ){
+                console.log( 'all resolve' );
+                return Contacts.all()
+                .$promise.then(function(user) {
+                           console.log('user', user);
+                         });
+              }
+            }
           }
         }
       } )

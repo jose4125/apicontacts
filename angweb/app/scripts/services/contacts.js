@@ -27,12 +27,18 @@ angular.module('apicontactsApp')
     // Service logic
     // ...
 
-    var cont = $resource( ENV.localhost + '/contacts/:id' );
+    // var cont = $resource( ENV.localhost + '/contacts/:id' );
+    var cont = $resource(ENV.localhost + '/contacts/:id', {id: '@_id'}, {
+      query: {method:'GET', params:{id:''}, isArray:true},
+      post: {method:'POST'},
+      update: {method:'PUT'},
+      remove: {method:'DELETE'}
+    });
     var newCont;
     var editContact;
     function allContacts (){
       // cont; 
-      return cont.query();
+      return cont.query()
     }
     function save ( contact, callback ){
 
@@ -44,9 +50,16 @@ angular.module('apicontactsApp')
       });
     }
 
-    function edit( id ){
+    function getContact ( id ){
       console.log( 'factory edit', id );
        return editContact = cont.get({ id: id }); 
+    }
+
+    function update ( contact, callback ){
+      console.log( 'contact', contact );
+      cont.update( contact, function() {
+        callback({status : true});
+      });
     }
 
     // Public API here
@@ -57,8 +70,11 @@ angular.module('apicontactsApp')
       create: function( contact, callback ){
         return save( contact, callback );
       },
-      edit: function( id ){
-        return edit( id );
+      getContact: function( id ){
+        return getContact( id );
+      },
+      update: function( contact, callback ){
+        return update( contact, callback );
       }
     };
   });
