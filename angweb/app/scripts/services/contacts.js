@@ -27,30 +27,38 @@ angular.module('apicontactsApp')
     // Service logic
     // ...
 
-    var cont;
+    var cont = $resource( ENV.localhost + '/contacts/:id' );
     var newCont;
+    var editContact;
     function allContacts (){
-      cont = $resource( ENV.localhost + '/contacts' );
+      // cont; 
+      return cont.query();
     }
     function save ( contact, callback ){
 
       newCont = new cont( contact );
       console.log( '[save contact]', newCont );
       console.log( '[save contact]', contact );
-      newCont.$save( function(){
+      return newCont.$save( function(){
         callback({status : true});
       });
+    }
+
+    function edit( id ){
+      console.log( 'factory edit', id );
+       return editContact = cont.get({ id: id }); 
     }
 
     // Public API here
     return {
       all: function () {
-        allContacts();
-        return cont.query();
+        return allContacts();
       },
       create: function( contact, callback ){
-        save( contact, callback );
-        return newCont;
+        return save( contact, callback );
+      },
+      edit: function( id ){
+        return edit( id );
       }
     };
   });
