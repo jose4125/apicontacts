@@ -1,0 +1,48 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Contact</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline" role="form">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="first_name" placeholder="First Name" ng-model="contact.first_name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="tsxt" class="form-control" id="last_name" placeholder="Last Name" ng-model="contact.last_name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="indentification" placeholder="Identification number" ng-model="contact.identification_num">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="cel" placeholder="Cel Phone" ng-model="contact.cel">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="phone_eme" placeholder="Emergency Phone" ng-model="contact.phone_eme">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="email" class="form-control" id="rkr_mail" placeholder="Rokk3r Mail" ng-model="contact.rkr_mail">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="email" class="form-control" id="user_mail" placeholder="Personal Mail" ng-model="contact.user_mail">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="skype" placeholder="Skype" ng-model="contact.skype">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="birthday" placeholder="Birthday" ng-model="contact.birthday">
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="btnAdd" type="button" class="btn btn-success" ng-click="save()">Add Contact</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

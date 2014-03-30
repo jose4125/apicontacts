@@ -34,6 +34,19 @@ angular.module('apicontactsApp', [
             controller: 'AddContactCtrl'
           }
         }
+      } )
+      .state( 'edit', {
+        url: '/edit/:id',
+        views: {
+          'contactList': {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+          },
+          'modal': {
+            templateUrl: 'views/edit.html',
+            controller: 'EditContactCtrl'
+          }
+        }
       } );
 
     $urlRouterProvider.otherwise( '/' );
