@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('apicontactsApp')
-  .controller('EditContactCtrl', function ($scope, $location, $state, $stateParams, Contacts) {
-    console.log( 'edit controller' );
+  .controller('DeleteContactCtrl', function ($scope, $location, $state, $stateParams, Contacts) {
+    console.log( 'delete controller' );
     $scope.contact = Contacts.getContact( $stateParams.id );
     console.log( 'contact', $scope.contact );
-    $scope.update = function(){
-      Contacts.update( $scope.contact, function( res ){
+    $scope.delete = function(){
+      Contacts.remove( $scope.contact, function( res ){
         if( res ){
           $scope.$emit('update-contact');
         }

@@ -7,13 +7,14 @@ angular.module('apicontactsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngRoute',
   'ui.router'
 ])
   .config(function ( $urlRouterProvider, $stateProvider ){
     console.log( '[init app]' );
     $stateProvider
       .state( 'home', {
-        url: '',
+        url: '/',
         views: {
           'contactList': {
             templateUrl: 'views/main.html',
@@ -54,6 +55,19 @@ angular.module('apicontactsApp', [
           'modal': {
             templateUrl: 'views/edit.html',
             controller: 'EditContactCtrl'
+          }
+        }
+      } )
+      .state( 'delete', {
+        url: '/delete/:id',
+        views: {
+          'contactList': {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+          },
+          'modal': {
+            templateUrl: 'views/delete.html',
+            controller: 'DeleteContactCtrl'
           }
         }
       } );

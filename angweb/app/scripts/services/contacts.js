@@ -32,7 +32,7 @@ angular.module('apicontactsApp')
       query: {method:'GET', params:{id:''}, isArray:true},
       post: {method:'POST'},
       update: {method:'PUT'},
-      remove: {method:'DELETE'}
+      remove: {method:'DELETE', params:{id:''}}
     });
     var newCont;
     var editContact;
@@ -62,6 +62,13 @@ angular.module('apicontactsApp')
       });
     }
 
+    function remove ( contact, callback ){
+      console.log( 'contact', contact );
+      cont.remove( {id: contact._id}, function() {
+        callback({status : true});
+      });
+    }
+
     // Public API here
     return {
       all: function () {
@@ -75,6 +82,9 @@ angular.module('apicontactsApp')
       },
       update: function( contact, callback ){
         return update( contact, callback );
+      },
+      remove: function( contact, callback ){
+        return remove( contact, callback );
       }
     };
   });
